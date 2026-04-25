@@ -1,0 +1,60 @@
+##Odd Even Linked List
+class Solution(object):
+    def oddEvenList(self, head):
+        """
+        :type head: Optional[ListNode]
+        :rtype: Optional[ListNode]
+        """
+        if head is None or head.next is None :
+            return head
+        odd= head
+        even = head.next
+        even_head=even
+        while even is not None and even.next is not None:
+            odd.next=odd.next.next
+            odd= odd.next
+            even.next=even.next.next
+            even=even.next
+        odd.next=even_head
+        return head 
+
+###Linked List Cycle II        
+
+class Solution(object):
+    def detectCycle(self, head):
+        """
+        :type head: ListNode
+        :rtype: ListNode
+        """
+        slow=head
+        fast=head
+        while fast is not None and fast.next is not None:
+            slow=slow.next
+            fast=fast.next.next
+            if slow==fast :
+                slow=head
+                while slow!=fast:
+
+                    slow=slow.next
+                    fast=fast.next
+                return slow
+        return None    
+
+        
+##Linked List Cycle
+class Solution(object):
+    def hasCycle(self, head):
+        """
+        :type head: ListNode
+        :rtype: bool
+        """
+        temp=head
+        my_set=set()
+        while temp is not None:
+            if temp in my_set:
+                return True
+            my_set.add(temp)
+
+            temp =temp.next
+        return False        
+        
